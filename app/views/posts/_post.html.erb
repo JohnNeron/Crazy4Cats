@@ -1,0 +1,16 @@
+<div id="<%= dom_id post %>">
+  <div class="bg-dark p-3 text-light">
+    <p>
+      <%= image_tag post.image, class: "photo" %>
+    </p>
+    <p>
+      <strong>Description:</strong>
+      <%= post.description %>
+    </p>
+
+    <p>
+      <strong>User:</strong>
+      <%= post.user.name %>
+    </p>
+  </div>
+</div>

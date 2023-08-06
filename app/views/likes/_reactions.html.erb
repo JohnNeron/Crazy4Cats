@@ -1,0 +1,14 @@
+<div class="container p-2 text-center text-light">
+<i class="fa-regular fa-thumbs-up fa-xl"></i>
+<% Like.kinds.each do |kind| %>
+  <%= @post.likes.where(kind: kind).count %> |
+ <% end %>
+ <i class="fa-regular fa-thumbs-down fa-xl "></i>
+<div class="d-flex justify-content-center">
+
+ <% Like.kinds.each do |kind| %>
+ <%= button_to "#{kind.capitalize}", new_user_like_path(post_id: @post.id, kind: kind), class:"btn button3 mx-1", method: :post %> 
+ <% end %>
+ 
+</div>
+</div>

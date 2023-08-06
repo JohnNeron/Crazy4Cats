@@ -1,0 +1,37 @@
+<div class="card comments mt-3 mb-2 bg-dark text-light">
+  <div class="card-header border-bottom-0 font-weight-bold bg-transparent">Comentarios</div>
+  <ul class="list-group list-group-flush">
+    <% @post.comments.each do |comment| %>
+      <li class="list-group-item bg-dark text-light">
+        <header class="comment-header"><strong><i class="fa-solid fa-cat fa-xl" style="color: #930606;">
+        </i><%= (comment.user.name if comment.user) || "Anonymous" %></strong> wrote <%= distance_of_time_in_words(Time.current, comment.created_at) %> ago</header>
+        <div class="comment-body"><strong><%= comment.content %></strong></div>
+        <% if user_signed_in? %>
+            <%= button_to "Eliminar comentario", comment, method: :delete, class:"btn button3" %>
+        <% end %>
+      </li>
+    <% end %>
+
+    <% if @post.comments.empty? %>
+      <li class="list-group-item text-center">Aún no hay comentarios para este post </li>
+    <% end %>
+  </ul>
+</div>
+    <div class="card bg-dark new-comment">
+      <div class="card-body">
+        <p><strong class="text-light">Deja tu comentario:</strong></p>
+        
+        <%= form_for @post.comments.build do |f| %>
+          <%= f.hidden_field :post_id, value: @post.id %>
+  <div>
+      <%= f.label :content, style: "display: block" %>
+      <%= f.text_field :content, class:"form-control" %>
+    </div>
+
+          <div class="text-right">
+            <%= f.submit "Comentar", class: "btn button3 my-3" %>
+          </div>
+          <div>
+          <% end %>
+    </div>
+

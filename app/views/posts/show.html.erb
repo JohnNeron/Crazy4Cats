@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="d-flex justify-content-center">
+  <%= render @post %>
+</div>
+<div class="m-3 d-flex justify-content-center">
+  <%= link_to "Back to posts", posts_path, class:"btn button3" %>
+</div>
+  <%= render 'likes/reactions' %>
+
+<div class="container">
+  <%= render 'comments/comentarios' %>
+</div>
+<% if user_signed_in? %>
+    <% if current_user.id == @post.user_id %>
+      <div class="d-flex justify-content-center">
+        <%= link_to "Edit this post", edit_post_path(@post), class:"btn button3 mx-3" %>
+        <%= button_to "Destroy this post", @post, method: :delete, class: "btn button3" %>
+      </div>
+    <% end %>
+  <% end %>
+

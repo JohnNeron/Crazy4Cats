@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<div id="posts">
+  
+    <% @posts.each do |post| %>
+    <div class="d-flex justify-content-center">
+      <%= render post %>
+    </div>
+    <p class="text-center mt-2">
+      <%= link_to "Show this post", post, class:"btn button3" %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New post", new_post_path, class: "btn submit" %>

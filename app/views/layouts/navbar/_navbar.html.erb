@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg bg-dark text-light" data-bs-theme="dark">
+  <div class="container">
+    <%= link_to "Crazy4Cats", root_path, class:"navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if user_signed_in? %>
+              <% if current_user.name %>
+                Hola <%= current_user.name %>
+              <% else %>
+                Hola <%= current_user.email %>
+              <% end %>
+            <% else %>
+                Inicia sesión o registrate
+            <% end %>
+          </a>
+          <ul class="dropdown-menu">
+            <% if user_signed_in? %>
+                <li><%= button_to "Cerrar Sesión", destroy_user_session_path, class:"dropdown-item", method: :delete %></li>
+            <% else %>
+                <li><%= link_to "Iniciar Sesión", new_user_session_path, class:"dropdown-item" %></li>
+                <li><%= link_to "Registro", new_user_registration_path, class:"dropdown-item" %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
